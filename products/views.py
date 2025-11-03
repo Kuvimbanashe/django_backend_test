@@ -20,24 +20,24 @@ class BulkUploadView(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # ✅ Use MEDIA_ROOT (safe, portable, writable)
+        # Use MEDIA_ROOT (safe, portable, writable)
         uploads_dir = os.path.join(settings.MEDIA_ROOT, 'uploads')
         os.makedirs(uploads_dir, exist_ok=True)
 
-        # ✅ Generate a unique name to prevent collisions
+        # Generate a unique name to prevent collisions
         generated_name = f"{uuid.uuid4().hex}_{csv_file.name}"
         relative_path = os.path.join('uploads', generated_name)
         full_path = os.path.join(settings.MEDIA_ROOT, relative_path)
 
-        # ✅ Save file to disk
+        # Save file to disk
         with open(full_path, 'wb+') as f:
             for chunk in csv_file.chunks():
                 f.write(chunk)
 
-        # ✅ Create UploadTask record
+        # Create UploadTask record
         task = UploadTask.objects.create(csv_file=relative_path)
 
-        # ✅ rigger async Celery processing
+        # rigger async Celery processing
         process_product_csv.delay(str(task.id), relative_path)
 
         return Response({'task_id': str(task.id)}, status=status.HTTP_202_ACCEPTED)
