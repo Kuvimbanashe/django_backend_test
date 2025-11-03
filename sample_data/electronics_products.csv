@@ -1,0 +1,21 @@
+sku,name,price,stock_count,is_active
+SKU2000,Smartphone X200,699.99,45,True
+SKU2001,Wireless Earbuds,79.99,120,True
+SKU2002,"Laptop Pro 15""",1299.0,30,True
+SKU2003,"Smart TV 55""",849.5,25,True
+SKU2004,Bluetooth Speaker,59.99,75,True
+SKU2005,Gaming Console Z,499.0,40,True
+SKU2006,External Hard Drive 1TB,65.9,90,True
+SKU2007,Smartwatch S3,199.99,85,True
+SKU2008,Portable Power Bank 20000mAh,34.99,100,True
+SKU2009,Wireless Mouse,15.5,140,True
+SKU2010,Mechanical Keyboard,89.99,70,True
+SKU2011,HDMI Cable 2m,9.5,200,True
+SKU2012,USB-C Charger 65W,29.99,90,True
+SKU2013,Router AX3000,119.99,50,True
+SKU2014,"LED Monitor 27""",249.0,40,True
+SKU2015,Drone 4K Camera,899.99,15,True
+SKU2016,Digital Camera 24MP,499.99,25,True
+SKU2017,Tripod Stand,45.0,100,True
+SKU2018,Smart Light Bulb,19.99,150,True
+SKU2019,VR Headset,349.0,20,True
