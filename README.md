@@ -1,2 +1,1 @@
-# django_backend_test
-Django backend test for Muzukuru Funeral Streaming Company 
+# Advanced Bulk Product Upload (Django + DRF + Celery)\nSee .env.example and README in repo for usage.
