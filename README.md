@@ -1,41 +1,41 @@
-# 🧠 Advanced Bulk Product Upload API
+#  Bulk Product Upload API
 
-An advanced Django-based API that supports **bulk product upload via CSV files**, **asynchronous background processing**, **progress tracking**, and **Swagger documentation**.  
+ Django-based API that supports **bulk product upload via CSV files**, **asynchronous background processing**, **progress tracking**, and **Swagger documentation**.  
 This project is production-ready, containerized, and designed for clarity and extensibility.
 
 ---
 
-## 🚀 Features
+##  Features
 
-- 📦 Bulk upload of product data using CSV files.
-- 🧵 Asynchronous background processing via Celery + Redis.
-- 🗂️ Real-time task progress tracking (upload status API).
-- 🌐 API documentation using Swagger (via `drf-spectacular`).
-- ⚙️ Environment-based configuration using `.env`.
-- 🐳 Optional Docker setup for production and local testing.
-- 💾 PostgreSQL support (compatible with [Neon Database](https://neon.tech)).
+-  Bulk upload of product data using CSV files.
+-  Asynchronous background processing via Celery + Redis.
+- ️ Real-time task progress tracking (upload status API).
+-  API documentation using Swagger (via `drf-spectacular`).
+- Environment-based configuration using `.env`.
+- Docker setup for production and local testing.
+-  PostgreSQL support (compatible with [Neon Database](https://neon.tech)).
 
 ---
 
-## 🧰 Tech Stack
+##  Tech Stack
 
 | Component | Technology |
 |------------|-------------|
 | Backend Framework | Django 5 + Django REST Framework |
 | Asynchronous Tasks | Celery + Redis |
-| Database | PostgreSQL (Neon-hosted or local) |
+| Database | PostgreSQL (Neon-hosted ) |
 | Documentation | drf-spectacular (Swagger UI) |
-| Environment Management | python-dotenv / django-environ |
+| Environment Management | django-environ |
 | Deployment | Gunicorn + Docker |
 
 ---
 
-## ⚙️ Environment Setup
+##  Environment Setup
 
 ### 1. Clone and Navigate
 ```bash
-git clone https://github.com/<your-username>/advanced_bulk_upload.git
-cd advanced_bulk_upload
+git clone git@github.com:Kuvimbanashe/django_backend_test.git
+cd django_backend_test
 ```
 
 ### 2. Create Virtual Environment
@@ -55,23 +55,23 @@ Create a `.env` file at the project root:
 ```env
 SECRET_KEY=dev-secret-key
 DEBUG=1
-DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
-
-# Database (Example: Neon)
+DJANGO_ALLOWED_HOSTS=['*'] 
 POSTGRES_DB=neondb
 POSTGRES_USER=neondb_owner
-POSTGRES_PASSWORD=yourpassword
+POSTGRES_PASSWORD=npg_iYcuKfy68ISH
 POSTGRES_HOST=ep-tiny-smoke-ah1c4szd-pooler.c-3.us-east-1.aws.neon.tech
 POSTGRES_PORT=5432
 
-CELERY_BROKER_URL=redis://localhost:6379/0
-CELERY_RESULT_BACKEND=redis://localhost:6379/1
-MEDIA_ROOT=media/
+CELERY_BROKER_URL=redis://127.0.0.1:6379/0
+CELERY_RESULT_BACKEND=redis://127.0.0.1:6379/1
+MEDIA_ROOT=/media/
+
+
 ```
 
 ---
 
-## 🧩 Database Setup
+##  Database Setup
 
 Run migrations:
 ```bash
@@ -85,7 +85,7 @@ python manage.py createsuperuser
 
 ---
 
-## 🧠 Running the Application
+##  Running the Application
 
 ### 1. Start Redis
 ```bash
@@ -103,23 +103,23 @@ python manage.py runserver
 ```
 
 Visit:
-- API UI → http://127.0.0.1:8000/upload/products/
+- API UI → http://127.0.0.1:8000/api/products/
 - Swagger Docs → http://127.0.0.1:8000/api/schema/swagger-ui/
 
 ---
 
-## 🧪 Quick API Testing
+##  Quick API Testing
 
 | Method | Endpoint | Description |
 |--------|-----------|-------------|
-| `POST` | `/upload/products/bulk-upload/` | Upload a CSV file for processing |
-| `GET`  | `/upload/products/status/<task_id>/` | Get upload task progress |
-| `GET`  | `/upload/products/` | View all uploaded products |
+| `POST` | `/api/products/bulk-upload/` | Upload a CSV file for processing |
+| `GET`  | `/api/tasks/<task_id>/status/` | Get upload task progress |
+| `GET`  | `/api/products/` | View all uploaded products |
 | `GET`  | `/api/schema/swagger-ui/` | Interactive Swagger Docs |
 
 ### Upload CSV Example
 ```bash
-curl -X POST -F "file=@grocery_products.csv" http://127.0.0.1:8000/upload/products/bulk-upload/
+curl -X POST -F "file=@./sample_data/grocery_products.csv" http://127.0.0.1:8000/api/products/bulk-upload/
 ```
 
 Response:
@@ -129,28 +129,28 @@ Response:
 
 Track progress:
 ```bash
-curl http://127.0.0.1:8000/upload/products/status/5d7f6a6b-a8f2-4e3a-a513-86f7ec4b7f3b/
+curl http://127.0.0.1:8000/api/tasks/5d7f6a6b-a8f2-4e3a-a513-86f7ec4b7f3b/status
 ```
 
 View uploaded data:
 ```bash
-curl http://127.0.0.1:8000/upload/products/
+curl http://127.0.0.1:8000/api/products/
 ```
 
 ---
 
-## 🧾 Example CSV Files
+##  Example CSV Files
 
-Included sample files:
-- `grocery_products.csv` 🍎
-- `electronics_products.csv` ⚡
-- `fashion_products.csv` 👗
+Included sample files in sample_data folder:
+- `grocery_products.csv` 
+- `electronics_products.csv` 
+- `fashion_products.csv` 
 
 Each has **50+ records** for testing.
 
 ---
 
-## 🐳 Docker Setup
+##  Docker Setup
 
 ```bash
 docker-compose up --build
@@ -164,18 +164,9 @@ This launches:
 
 ---
 
-## 🧭 Interviewer Notes
-
-- Demonstrates **asynchronous processing**, **REST principles**, and **environment-driven config**.
-- Swagger for easy API testing.
-- Uses Celery to handle heavy CSV uploads in background.
-- Clean modular architecture, extensible for production use.
-
----
-
-## 🧑‍💻 Author
+##  Author
 
 **Camaraderie Mavenga**  
 Full Stack Developer | Django, React, Node.js  
 📧 camaradery303@gmail.com  
-🌍 [camathedev.vercel.app](https://camathedev.vercel.app)
+🌍 [cama-1z3r.onrender.com](https://cama-1z3r.onrender.com)

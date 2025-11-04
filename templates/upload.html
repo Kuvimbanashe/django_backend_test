@@ -30,7 +30,7 @@ const reportEl = document.getElementById('report');
 const refreshBtn = document.getElementById('refresh');
 const productsTbody = document.querySelector('#products tbody');
 function updateProducts(){
-  fetch('/upload/products/').then(r=>r.json()).then(data=>{
+  fetch('/api/products/').then(r=>r.json()).then(data=>{
     productsTbody.innerHTML = '';
     data.forEach(p=>{
       const tr = document.createElement('tr');
@@ -47,7 +47,7 @@ uploadBtn.onclick = ()=>{
   const fd = new FormData();
   fd.append('file', f);
   msg.textContent = 'Uploading...';
-  fetch('/upload/products/bulk-upload/', { method: 'POST', body: fd })
+  fetch('/api/products/bulk-upload/', { method: 'POST', body: fd })
     .then(r=>r.json())
     .then(data => {
       if(data.task_id){
@@ -60,7 +60,7 @@ uploadBtn.onclick = ()=>{
 };
 function pollStatus(task_id){
   const iv = setInterval(()=>{
-    fetch('/upload/tasks/' + task_id + '/status/').then(r=>r.json()).then(data=>{
+    fetch('/api/tasks/' + task_id + '/status/').then(r=>r.json()).then(data=>{
       bar.style.width = (data.progress||0) + '%';
       pct.textContent = (data.progress||0) + '%';
       if(data.status === 'SUCCESS' || data.status === 'FAILURE'){
