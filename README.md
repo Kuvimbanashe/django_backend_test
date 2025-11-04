@@ -104,7 +104,7 @@ python manage.py runserver
 
 Visit:
 - API UI → http://127.0.0.1:8000/api/products/
-- Swagger Docs → http://127.0.0.1:8000/api/schema/swagger-ui/
+- Customized UI for quick Upload and Testing using Django Template System → http://127.0.0.1:8000/api/upload-ui/
 
 ---
 
@@ -115,7 +115,7 @@ Visit:
 | `POST` | `/api/products/bulk-upload/` | Upload a CSV file for processing |
 | `GET`  | `/api/tasks/<task_id>/status/` | Get upload task progress |
 | `GET`  | `/api/products/` | View all uploaded products |
-| `GET`  | `/api/schema/swagger-ui/` | Interactive Swagger Docs |
+| `GET`  | `/swagger` | Interactive Swagger Docs |
 
 ### Upload CSV Example
 ```bash
